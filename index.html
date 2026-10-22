@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a192f">
+  <meta name="description" content="사용자에게 진짜 가치를 전하는 개발자, 김민수의 포트폴리오입니다.">
+  <title>김민수 | Software Developer</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --navy: #0a192f;
+      --navy-light: #112541;
+      --navy-card: #10213a;
+      --teal: #64ffda;
+      --teal-soft: rgba(100, 255, 218, .12);
+      --white: #dce7f5;
+      --muted: #9aabc0;
+      --faint: #71839b;
+      --line: rgba(148, 163, 184, .15);
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --sans: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 40px; }
+    body {
+      margin: 0;
+      color: var(--muted);
+      background:
+        radial-gradient(ellipse at 78% 8%, rgba(26, 64, 87, .22), transparent 36rem),
+        var(--navy);
+      font-family: var(--sans);
+      word-break: keep-all;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .shell { width: min(1160px, calc(100% - 72px)); margin: 0 auto; }
+    .site-grid { display: grid; grid-template-columns: minmax(310px, .88fr) minmax(0, 1.12fr); gap: 54px; }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 84px 0 42px;
+    }
+    .intro { max-width: 470px; }
+    .eyebrow, .section-kicker {
+      margin: 0 0 20px;
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .02em;
+    }
+    .intro h1 {
+      margin: 0;
+      color: var(--white);
+      font-size: clamp(46px, 5.6vw, 68px);
+      font-weight: 760;
+      line-height: 1.08;
+      letter-spacing: -.065em;
+    }
+    .role {
+      margin: 17px 0 0;
+      color: #cfdaea;
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 600;
+      letter-spacing: -.035em;
+    }
+    .intro-copy { max-width: 390px; margin: 20px 0 0; font-size: 15px; line-height: 1.85; }
+    .portrait-wrap { position: absolute; top: 84px; right: 5px; width: 66px; height: 66px; }
+    .portrait-wrap::before {
+      position: absolute;
+      inset: -5px;
+      border: 1px solid rgba(100,255,218,.45);
+      border-radius: 50%;
+      content: "";
+    }
+    .portrait-wrap img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 50%; }
+    .side-nav { display: grid; gap: 7px; margin-top: 40px; }
+    .side-nav a {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 0;
+      color: var(--faint);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .1em;
+      transition: color .2s ease;
+    }
+    .side-nav a::before { width: 28px; height: 1px; background: #52647b; content: ""; transition: width .2s ease, background .2s ease; }
+    .side-nav a:hover, .side-nav a.is-active { color: var(--white); }
+    .side-nav a:hover::before, .side-nav a.is-active::before { width: 56px; background: var(--teal); }
+    .sidebar-bottom { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+    .social-links { display: flex; align-items: center; gap: 16px; }
+    .social-links a {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      color: var(--faint);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      transition: color .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .social-links a:hover { color: var(--teal); border-color: var(--teal); transform: translateY(-3px); }
+    .side-caption { margin: 0; color: #63748b; font-family: var(--mono); font-size: 10px; text-align: right; }
+
+    main { min-width: 0; padding: 82px 0 64px; }
+    .mobile-name { display: none; }
+    .content-section { padding: 0 0 84px; scroll-margin-top: 35px; }
+    .content-section + .content-section { padding-top: 10px; }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin: 0 0 27px;
+      color: var(--white);
+      font-size: 23px;
+      font-weight: 700;
+      letter-spacing: -.045em;
+      white-space: nowrap;
+    }
+    .section-title span { color: var(--teal); font-family: var(--mono); font-size: 13px; font-weight: 400; letter-spacing: 0; }
+    .section-title::after { width: 100%; height: 1px; background: var(--line); content: ""; }
+    .body-copy { margin: 0 0 15px; font-size: 14px; line-height: 1.95; }
+    .body-copy strong { color: var(--white); font-weight: 600; }
+    .inline-link { color: var(--teal); border-bottom: 1px solid rgba(100,255,218,.3); transition: border-color .2s ease; }
+    .inline-link:hover { border-color: var(--teal); }
+    .value-quote {
+      margin: 28px 0 0;
+      padding: 18px 21px;
+      color: var(--white);
+      background: linear-gradient(110deg, rgba(100,255,218,.09), rgba(100,255,218,.015));
+      border-left: 2px solid var(--teal);
+      font-size: 17px;
+      font-weight: 650;
+      letter-spacing: -.025em;
+    }
+    .value-quote span { display: block; margin-bottom: 8px; color: var(--teal); font-family: var(--mono); font-size: 10px; font-weight: 400; letter-spacing: .12em; }
+    .strength-list { display: grid; gap: 13px; margin: 0; padding: 0; list-style: none; }
+    .strength-list li { position: relative; padding-left: 22px; font-size: 13px; line-height: 1.8; }
+    .strength-list li::before { position: absolute; left: 0; color: var(--teal); content: "▹"; font-family: var(--mono); }
+    .strength-list strong { color: var(--white); font-weight: 650; }
+    .growth-note { margin-top: 21px; padding: 17px 19px; background: rgba(17,37,65,.72); border: 1px solid var(--line); border-radius: 4px; }
+    .growth-note .note-label { margin: 0 0 8px; color: var(--teal); font-family: var(--mono); font-size: 10px; letter-spacing: .12em; }
+    .growth-note p:last-child { margin: 0; font-size: 13px; line-height: 1.8; }
+
+    .experience-list { display: grid; gap: 5px; }
+    .experience-card {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 18px;
+      padding: 19px 16px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .experience-card:hover {
+      background: rgba(17,37,65,.78);
+      border-color: rgba(148,163,184,.08);
+      box-shadow: 0 9px 25px rgba(0,0,0,.12);
+    }
+    .experience-date { padding-top: 4px; color: #8293a9; font-family: var(--mono); font-size: 10px; line-height: 1.7; letter-spacing: .04em; }
+    .experience-card h3 { margin: 0 0 7px; color: var(--white); font-size: 15px; font-weight: 680; letter-spacing: -.02em; }
+    .experience-card h3 span { color: var(--teal); }
+    .experience-card p { margin: 0; font-size: 12px; line-height: 1.85; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0 0; padding: 0; list-style: none; }
+    .tags li { padding: 5px 9px; color: var(--teal); background: var(--teal-soft); border-radius: 999px; font-family: var(--mono); font-size: 9px; }
+
+    .goal-card {
+      position: relative;
+      overflow: hidden;
+      padding: 25px 23px;
+      background: linear-gradient(130deg, rgba(17,37,65,.92), rgba(10,25,47,.5));
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+    .goal-card::after {
+      position: absolute;
+      top: -78px;
+      right: -74px;
+      width: 180px;
+      height: 180px;
+      border: 1px solid rgba(100,255,218,.16);
+      border-radius: 50%;
+      box-shadow: 0 0 0 22px rgba(100,255,218,.025), 0 0 0 48px rgba(100,255,218,.02);
+      content: "";
+    }
+    .goal-card .section-kicker { margin-bottom: 13px; font-size: 10px; }
+    .goal-card h3 { position: relative; z-index: 1; margin: 0 0 11px; color: var(--white); font-size: 19px; letter-spacing: -.04em; }
+    .goal-card > p:last-of-type { position: relative; z-index: 1; max-width: 480px; margin: 0; font-size: 13px; line-height: 1.9; }
+    .goal-points { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 9px 17px; margin: 20px 0 0; padding: 0; list-style: none; }
+    .goal-points li { color: #cfdaea; font-size: 11px; }
+    .goal-points li::before { margin-right: 7px; color: var(--teal); content: "↗"; font-family: var(--mono); }
+    footer { padding: 4px 0 0; color: #71839b; font-family: var(--mono); font-size: 10px; line-height: 1.8; }
+    footer a { color: var(--teal); }
+    .mobile-progress { display: none; }
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    :focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+
+    @media (max-width: 900px) {
+      .shell { width: min(760px, calc(100% - 52px)); }
+      .site-grid { grid-template-columns: 1fr; gap: 0; }
+      .sidebar { position: relative; height: auto; min-height: 0; padding: 64px 0 20px; }
+      .intro { max-width: 610px; }
+      .intro h1 { font-size: clamp(52px, 9vw, 75px); }
+      .intro-copy { max-width: 510px; }
+      .portrait-wrap { top: 65px; right: 0; width: 78px; height: 78px; }
+      .side-nav { display: flex; flex-wrap: wrap; gap: 7px 18px; margin-top: 28px; }
+      .side-nav a { padding: 6px 0; }
+      .side-nav a::before { width: 13px; }
+      .side-nav a:hover::before, .side-nav a.is-active::before { width: 25px; }
+      .sidebar-bottom { position: absolute; top: 65px; right: 99px; }
+      .side-caption { display: none; }
+      .social-links { gap: 8px; }
+      .social-links a { width: 31px; height: 31px; }
+      main { padding: 57px 0 48px; }
+      .content-section { padding-bottom: 70px; }
+    }
+    @media (max-width: 560px) {
+      html { scroll-padding-top: 18px; }
+      .shell { width: calc(100% - 40px); }
+      .sidebar { padding-top: 48px; }
+      .eyebrow { margin-bottom: 17px; font-size: 10px; }
+      .intro h1 { max-width: 330px; font-size: clamp(43px, 13vw, 59px); }
+      .role { margin-top: 13px; font-size: 17px; }
+      .intro-copy { max-width: 360px; margin-top: 15px; font-size: 13px; }
+      .portrait-wrap { top: 43px; right: 2px; width: 49px; height: 49px; }
+      .portrait-wrap::before { inset: -4px; }
+      .sidebar-bottom { top: auto; right: auto; bottom: -1px; left: 0; }
+      .social-links a { width: 29px; height: 29px; }
+      .side-nav { display: grid; grid-template-columns: repeat(2, max-content); gap: 4px 20px; margin-top: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+      .side-nav a { gap: 8px; font-size: 9px; }
+      .side-nav a::before { width: 10px; }
+      .side-nav a:hover::before, .side-nav a.is-active::before { width: 18px; }
+      main { padding-top: 47px; }
+      .content-section { padding-bottom: 59px; }
+      .section-title { gap: 9px; margin-bottom: 21px; font-size: 20px; }
+      .section-title span { font-size: 11px; }
+      .body-copy { font-size: 13px; }
+      .experience-card { grid-template-columns: 1fr; gap: 8px; padding: 15px 12px; }
+      .experience-date { padding: 0; font-size: 9px; }
+      .experience-card h3 { font-size: 14px; }
+      .experience-card p { font-size: 11px; }
+      .goal-card { padding: 21px 18px; }
+      .mobile-progress { position: fixed; z-index: 20; top: 0; left: 0; width: 100%; height: 2px; display: block; background: transparent; }
+      .mobile-progress span { width: 0; height: 100%; display: block; background: var(--teal); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="mobile-progress" aria-hidden="true"><span></span></div>
+  <div class="shell site-grid">
+    <header class="sidebar">
+      <div class="intro">
+        <div class="portrait-wrap">
+          <img src="실습용 프로필 이미지.png" alt="김민수의 프로필 이미지">
+        </div>
+        <p class="eyebrow">안녕하세요, 저는</p>
+        <h1>김민수<span aria-hidden="true">.</span></h1>
+        <p class="role">사용자의 문제를 해결하는 소프트웨어 개발자</p>
+        <p class="intro-copy">기술과 사람 사이에서 더 나은 경험을 만들고 있습니다. 계속 배우고, 함께 고민하고, 끝까지 해결합니다.</p>
+        <nav class="side-nav" aria-label="페이지 메뉴">
+          <a class="is-active" href="#about" data-section="about">소개</a>
+          <a href="#strengths" data-section="strengths">일하는 방식</a>
+          <a href="#experience" data-section="experience">경험과 활동</a>
+          <a href="#goals" data-section="goals">앞으로의 목표</a>
+        </nav>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="social-links" aria-label="소개">
+          <a href="#experience" aria-label="경험 섹션으로 이동">EX</a>
+          <a href="#strengths" aria-label="강점 섹션으로 이동">ME</a>
+          <a href="#goals" aria-label="목표 섹션으로 이동">↗</a>
+        </div>
+        <p class="side-caption">BUILT WITH CARE · 2026</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="content-section reveal" id="about" data-observe-section>
+        <h2 class="section-title"><span>01.</span> About me</h2>
+        <p class="body-copy">저는 컴퓨터공학을 전공하고 <strong>2년간 스타트업에서 웹 개발</strong>을 담당한 개발자 김민수입니다. 빠르게 변화하는 IT 업계에서 새로운 기술을 배우고 실제 문제에 적용하는 일을 좋아합니다.</p>
+        <p class="body-copy">특히 기술 자체에 머무르기보다, 그것으로 <strong>사용자 경험을 어떻게 개선할 수 있을지</strong> 고민합니다. 기획자·디자이너·개발자와 긴밀하게 소통하며 팀의 목표를 함께 이루는 과정에서 좋은 결과가 나온다고 믿습니다.</p>
+        <blockquote class="value-quote"><span>MY PRINCIPLE</span>“기술은 사람을 위해 존재한다”</blockquote>
+      </section>
+
+      <section class="content-section reveal" id="strengths" data-observe-section>
+        <h2 class="section-title"><span>02.</span> How I work</h2>
+        <ul class="strength-list">
+          <li><strong>꾸준히 배우고 나눕니다.</strong> 온라인 강의와 사이드 프로젝트로 배운 것을 실전에 적용하고 팀과 공유합니다.</li>
+          <li><strong>함께 답을 찾습니다.</strong> 개발자, 디자이너, 기획자의 관점을 연결하고 공동의 목표에 집중합니다.</li>
+          <li><strong>문제를 끝까지 해결합니다.</strong> 복잡한 버그와 기술 이슈에도 여러 접근을 시도해 원인을 찾습니다.</li>
+        </ul>
+        <div class="growth-note">
+          <p class="note-label">ALWAYS IMPROVING</p>
+          <p>완성도에 오래 머무르지 않도록 우선순위를 명확히 하고, 일정과 품질의 균형을 맞추는 연습을 이어가고 있습니다.</p>
+        </div>
+      </section>
+
+      <section class="content-section reveal" id="experience" data-observe-section>
+        <h2 class="section-title"><span>03.</span> Experience</h2>
+        <div class="experience-list">
+          <article class="experience-card">
+            <div class="experience-date">2 YEARS<br>STARTUP</div>
+            <div>
+              <h3>웹 개발자 <span>· 스타트업</span></h3>
+              <p>웹 개발 업무를 맡아 빠르게 바뀌는 환경에서 기술을 학습하고 제품에 적용했습니다. 사용자 관점에서 문제를 살피며 더 편리한 경험을 만드는 방법을 고민했습니다.</p>
+              <ul class="tags"><li>웹 개발</li><li>사용자 경험</li><li>협업</li></ul>
+            </div>
+          </article>
+          <article class="experience-card">
+            <div class="experience-date">48 HOURS<br>AWARD</div>
+            <div>
+              <h3>팀장 · 교내 해커톤 <span>우수상</span></h3>
+              <p>5명의 팀원과 지역 상권 활성화 앱을 기획·개발했습니다. React Native로 48시간 안에 결과물을 완성하며 백엔드 API 설계부터 프론트엔드 구현까지 경험했습니다.</p>
+              <ul class="tags"><li>React Native</li><li>API 설계</li><li>리더십</li></ul>
+            </div>
+          </article>
+          <article class="experience-card">
+            <div class="experience-date">4 YEARS<br>MENTORING</div>
+            <div>
+              <h3>컴퓨터공학과 학회 <span>· 멘토</span></h3>
+              <p>4년간 학회 활동을 하며 후배들에게 프로그래밍을 가르쳤습니다. 복잡한 개념을 쉽게 설명하는 법을 배웠고, 지금도 코드 리뷰와 기술 공유에 활용하고 있습니다.</p>
+              <ul class="tags"><li>멘토링</li><li>기술 공유</li><li>커뮤니케이션</li></ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section reveal" id="goals" data-observe-section>
+        <h2 class="section-title"><span>04.</span> What's next</h2>
+        <div class="goal-card">
+          <p class="section-kicker">GROW WITH PURPOSE</p>
+          <h3>팀과 함께 성장하며, 더 안정적인 서비스를 만들겠습니다.</h3>
+          <p>먼저 개발 문화와 코딩 컨벤션에 빠르게 적응하고 비즈니스 도메인을 깊이 이해하겠습니다. 장기적으로는 클라우드와 마이크로서비스 아키텍처 전문성을 쌓아 서비스의 확장성과 안정성을 높이고, 동료의 성장을 돕는 기술 리더가 되고 싶습니다.</p>
+          <ul class="goal-points"><li>팀의 개발 문화에 기여</li><li>클라우드 · 마이크로서비스</li><li>함께 성장하는 멘토링</li></ul>
+        </div>
+      </section>
+
+      <footer>
+        <p>이 페이지는 김민수의 자기소개서를 바탕으로 제작했습니다.</p>
+        <a href="#about">Back to top ↑</a>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const sectionLinks = [...document.querySelectorAll(".side-nav a")];
+    const observedSections = [...document.querySelectorAll("[data-observe-section]")];
+    const revealSections = document.querySelectorAll(".reveal");
+    const progressBar = document.querySelector(".mobile-progress span");
+
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      revealSections.forEach((section) => revealObserver.observe(section));
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            sectionLinks.forEach((link) => {
+              link.classList.toggle("is-active", link.dataset.section === entry.target.id);
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -60% 0px" });
+      observedSections.forEach((section) => sectionObserver.observe(section));
+    } else {
+      revealSections.forEach((section) => section.classList.add("is-visible"));
+    }
+
+    const updateProgress = () => {
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+      progressBar.style.width = `${Math.min(100, Math.max(0, progress * 100))}%`;
+    };
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
+  </script>
+</body>
+</html>
